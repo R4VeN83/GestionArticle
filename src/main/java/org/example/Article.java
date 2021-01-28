@@ -16,6 +16,22 @@ public abstract class Article {
 
     }
 
+    public float getPrixTTC() {
+        return prixTTC;
+    }
+
+    public void setPrixTTC(float prixTTC) {
+        this.prixTTC = prixTTC;
+    }
+
+    public float getTVA() {
+        return TVA;
+    }
+
+    public void setTVA(float TVA) {
+        this.TVA = TVA;
+    }
+
     /**
      *
      * @param reference
@@ -66,10 +82,22 @@ public abstract class Article {
         this.quantiteStock = quantiteStock;
     }
 
+    /**
+     *
+     * @param nombreUnites
+     * @author Alex
+     * Méthode qui approvisionne le stock
+     */
     public void approvisionner(int nombreUnites){
         this.quantiteStock += nombreUnites;
     }
 
+    /**
+     *
+     * @param nombreUnites
+     * @return
+     * Méthode qui réduit le stock en cas de vente d'un produit
+     */
     public boolean vendre(int nombreUnites){
         if (nombreUnites > this.quantiteStock) {
             return false;
@@ -80,12 +108,19 @@ public abstract class Article {
         }
     }
 
+    /**
+     * Méthode qui retourne le prix TTC
+     * @return
+     */
     public float prixTTC(){
-        float prixTTC = 0;
-
+        float prixTTC = this.prixHT * TVA;
         return prixTTC;
     }
 
+    /**
+     * Méthode qui affiche la référence, l'intitulé et le prix du produit
+     * @return
+     */
     public String afficher(){
         String afficherArticle = "La référence : " + reference + " l'intitulé : " + intitule + "le prix de l'article est : ", prixTTC;
         return afficherArticle;
